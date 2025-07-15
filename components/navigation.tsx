@@ -68,7 +68,8 @@ const navigation = [
     submenu: [
       { name: 'Colaboradores', href: '/users/staff', icon: UserCheck },
       { name: 'Grupos', href: '/users/groups', icon: Users2 },
-      { name: 'Clientes', href: '/users/customers', icon: Building2 }
+      { name: 'Clientes', href: '/users/customers', icon: Building2 },
+      { name: 'Setores', href: '/users/departments', icon: Building2 }
     ]
   },
   { 
