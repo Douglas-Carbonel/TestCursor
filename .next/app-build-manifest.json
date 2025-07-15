@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
+    "/api/tickets/stats/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/tickets/stats/route.js"
+    ],
     "/api/tickets/sla/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,25 +31,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/tickets/route.js"
     ],
-    "/api/tickets/stats/route": [
+    "/kanban/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/tickets/stats/route.js"
+      "static/chunks/app/kanban/page.js"
     ],
-    "/tickets/page": [
+    "/knowledge-base/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/tickets/page.js"
+      "static/chunks/app/knowledge-base/page.js"
     ],
-    "/users/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/users/page.js"
-    ],
-    "/api/users/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/users/route.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
