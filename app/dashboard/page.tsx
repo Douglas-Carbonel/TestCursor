@@ -32,17 +32,33 @@ interface RecentTicket {
   priority: string
   createdAt: string
   assigneeId: string | null
+  customer?: {
+    name: string
+    company?: string
+  }
+  slaStatus?: 'within' | 'warning' | 'breached'
+}
+
+interface SLAMetrics {
+  withinSLA: number
+  atRisk: number
+  breached: number
+  averageResponseTime: number
+  averageResolutionTime: number
 }
 
 export default function DashboardPage() {
   const [stats, setStats] = useState<TicketStats | null>(null)
   const [recentTickets, setRecentTickets] = useState<RecentTicket[]>([])
+  const [slaMetrics, setSlaMetrics] = useState<SLAMetrics | null>(null)
   const [loading, setLoading] = useState(true)
+  const [selectedConsultancy, setSelectedConsultancy] = useState<string>('all')
 
   useEffect(() => {
     fetchStats()
     fetchRecentTickets()
-  }, [])
+    fetchSLAMetrics()
+  }, [selectedConsultancy])
 
   const fetchStats = async () => {
     try {
@@ -58,7 +74,10 @@ export default function DashboardPage() {
 
   const fetchRecentTickets = async () => {
     try {
-      const response = await fetch('/api/tickets?limit=5')
+      const url = selectedConsultancy === 'all' 
+        ? '/api/tickets?limit=5' 
+        : `/api/tickets?limit=5&consultancy=${selectedConsultancy}`
+      const response = await fetch(url)
       if (response.ok) {
         const data = await response.json()
         setRecentTickets(data.tickets || [])
@@ -67,6 +86,21 @@ export default function DashboardPage() {
       console.error('Error fetching recent tickets:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchSLAMetrics = async () => {
+    try {
+      const url = selectedConsultancy === 'all' 
+        ? '/api/tickets/sla' 
+        : `/api/tickets/sla?consultancy=${selectedConsultancy}`
+      const response = await fetch(url)
+      if (response.ok) {
+        const data = await response.json()
+        setSlaMetrics(data)
+      }
+    } catch (error) {
+      console.error('Error fetching SLA metrics:', error)
     }
   }
 
