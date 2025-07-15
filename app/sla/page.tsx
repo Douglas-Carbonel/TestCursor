@@ -67,7 +67,7 @@ export default function SLAPage() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    departmentId: '',
+    departmentId: 'all',
     priority: [] as string[],
     customerType: [] as string[],
     firstResponseTime: 120, // minutes
@@ -144,7 +144,7 @@ export default function SLAPage() {
       
       const payload = {
         ...formData,
-        departmentId: formData.departmentId ? parseInt(formData.departmentId) : null
+        departmentId: formData.departmentId === 'all' ? null : parseInt(formData.departmentId)
       }
       
       const response = await fetch(url, {
@@ -170,7 +170,7 @@ export default function SLAPage() {
     setFormData({
       name: '',
       description: '',
-      departmentId: '',
+      departmentId: 'all',
       priority: [],
       customerType: [],
       firstResponseTime: 120,
@@ -187,7 +187,7 @@ export default function SLAPage() {
     setFormData({
       name: rule.name,
       description: rule.description,
-      departmentId: rule.departmentId?.toString() || '',
+      departmentId: rule.departmentId?.toString() || 'all',
       priority: rule.priority,
       customerType: rule.customerType,
       firstResponseTime: rule.firstResponseTime,
@@ -346,7 +346,7 @@ export default function SLAPage() {
                             <SelectValue placeholder="Selecione um setor" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="">Todos os setores</SelectItem>
+                            <SelectItem value="all">Todos os setores</SelectItem>
                             {departments.map((dept) => (
                               <SelectItem key={dept.id} value={dept.id.toString()}>
                                 {dept.name}
