@@ -1,4 +1,3 @@
-
 'use client'
 
 import Link from 'next/link'
@@ -16,7 +15,7 @@ export default function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
@@ -58,10 +57,10 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <button className="p-2.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100/70 dark:hover:bg-gray-800/70 rounded-xl transition-all duration-300">
+            <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300">
               <Search className="h-5 w-5" />
             </button>
-            <button className="p-2.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100/70 dark:hover:bg-gray-800/70 rounded-xl transition-all duration-300 relative">
+            <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300 relative">
               <Bell className="h-5 w-5" />
               <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></div>
             </button>
@@ -69,7 +68,7 @@ export default function Navigation() {
               <div className="text-sm text-gray-600 dark:text-gray-400">
                 Bem-vindo, <span className="font-medium text-gray-900 dark:text-white">Usuário</span>
               </div>
-              <button className="p-2.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100/70 dark:hover:bg-gray-800/70 rounded-xl transition-all duration-300">
+              <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300">
                 <Settings className="h-5 w-5" />
               </button>
             </div>
