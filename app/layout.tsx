@@ -6,7 +6,7 @@ import Navigation from '@/components/navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HelpDesk Pro - Portal de Chamados',
+  title: 'TICKET LEAD - Sistema de Chamados',
   description: 'Sistema de gerenciamento de chamados profissional',
 }
 
@@ -17,9 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>
-        <Navigation />
-        {children}
+      <body className={`${inter.className} bg-gray-50`}>
+        <div className="flex h-screen overflow-hidden">
+          <Navigation />
+          <main className="flex-1 overflow-y-auto bg-white">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )

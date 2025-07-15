@@ -2,79 +2,82 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Ticket, Users, Settings, Bell, Search } from 'lucide-react'
+import { Home, Ticket, Users, Settings, Bell, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
-  { name: 'Chamados', href: '/tickets', icon: Ticket },
-  { name: 'Usuários', href: '/users', icon: Users },
+  { name: 'Tickets', href: '/tickets', icon: Ticket },
+  { name: 'Users', href: '/users', icon: Users },
+  { name: 'Officals', href: '/officials', icon: Settings },
+  { name: 'Site Settings', href: '/settings', icon: Settings },
 ]
 
 export default function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <Ticket className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-primary">
-                ServiceDesk
-              </span>
-            </Link>
-
-            <div className="flex space-x-1">
-              {navigation.map((item) => {
-                const Icon = item.icon
-                const isActive = pathname === item.href || 
-                  (item.href === '/tickets' && pathname.startsWith('/tickets'))
-
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={cn(
-                      "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden group",
-                      isActive
-                        ? "bg-primary/10 text-primary border border-primary/20 shadow-lg"
-                        : "text-gray-600 hover:text-primary hover:bg-gray-50"
-                    )}
-                  >
-                    <Icon className="h-4 w-4 relative z-10" />
-                    <span className="relative z-10">{item.name}</span>
-                    {!isActive && (
-                      <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
-                    )}
-                  </Link>
-                )
-              })}
-            </div>
+    <div className="flex h-screen w-64 flex-col bg-white border-r border-gray-200">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <Link href="/" className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+            <Ticket className="h-4 w-4 text-white" />
           </div>
-
-          <div className="flex items-center space-x-4">
-            <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300">
-              <Search className="h-5 w-5" />
-            </button>
-            <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300 relative">
-              <Bell className="h-5 w-5" />
-              <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></div>
-            </button>
-            <div className="flex items-center space-x-3 pl-3 border-l border-gray-200 dark:border-gray-700">
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Bem-vindo, <span className="font-medium text-gray-900 dark:text-white">Usuário</span>
-              </div>
-              <button className="p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100/70 rounded-xl transition-all duration-300">
-                <Settings className="h-5 w-5" />
-              </button>
-            </div>
+          <span className="text-lg font-semibold text-gray-900">
+            TICKET LEAD
+          </span>
+        </Link>
+        <div className="flex items-center space-x-2">
+          <button className="p-1">
+            <Bell className="h-4 w-4 text-gray-500" />
+          </button>
+          <div className="flex items-center space-x-2">
+            <span className="text-sm text-gray-600">Welcome! John Smith</span>
           </div>
         </div>
       </div>
-    </nav>
+
+      {/* User Info */}
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-sm font-medium text-white">AR</span>
+            </div>
+            <span className="text-sm font-medium text-gray-900">Alex Robert</span>
+          </div>
+          <ChevronDown className="h-4 w-4 text-gray-500" />
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 p-4">
+        <ul className="space-y-2">
+          {navigation.map((item) => {
+            const Icon = item.icon
+            const isActive = pathname === item.href || 
+              (item.href === '/tickets' && pathname.startsWith('/tickets'))
+
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+    </div>
   )
 }
