@@ -27,13 +27,13 @@ export default function Navigation() {
                 HelpDesk Pro
               </span>
             </Link>
-            
+
             <div className="flex space-x-4">
               {navigation.map((item) => {
                 const Icon = item.icon
                 const isActive = pathname === item.href || 
                   (item.href === '/tickets' && pathname.startsWith('/tickets'))
-                
+
                 return (
                   <Link
                     key={item.name}
