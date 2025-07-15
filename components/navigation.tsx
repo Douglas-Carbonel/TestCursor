@@ -2,14 +2,15 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Ticket, Users, Settings, Bell, ChevronDown } from 'lucide-react'
+import { Home, Ticket, Users, Settings, Bell, ChevronDown, BarChart3, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
   { name: 'Overview', href: '/dashboard', icon: Home },
   { name: 'Requests', href: '/tickets', icon: Ticket },
   { name: 'Team members', href: '/users', icon: Users },
-  { name: 'Reports', href: '/reports', icon: Settings },
+  { name: 'Reports', href: '/reports', icon: BarChart3 },
+  { name: 'Knowledge Base', href: '/knowledge-base', icon: BookOpen },
 ]
 
 export default function Navigation() {

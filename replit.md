@@ -68,6 +68,79 @@ Design style: Clean modern layout with sidebar navigation and DWU orange color s
 - Métricas e alertas de SLA
 - Relatórios de performance por SLA
 
+## Sistema Completo de Funcionalidades
+
+### 1. Autenticação e Segurança
+- Login seguro com autenticação multifator (MFA)
+- Controle de permissões granulares
+- Auditoria de ações (log de atividades)
+- Sessões seguras com tokens JWT
+
+### 2. Painel do Cliente
+- **Dashboard Personalizado:**
+  - Visualização de todos os chamados que fazem parte da consultoria (Grupo)
+  - Chamados em aberto
+  - Chamados finalizados
+  - Chamados em SLA e fora do SLA
+  - Histórico completo de tickets
+  - Para as consultorias, busca por cliente final
+  - Campo de busca avançada
+  - Opção de reabrir tickets
+
+### 3. Painel da Equipe de Suporte
+- **Visualização em Kanban e Lista**
+- Filtros personalizados (por status, consultoria, cliente, prioridade, agente, etc.)
+- Respostas rápidas e templates
+- Atribuição automática/manual de tickets
+- Colaboração interna (notas privadas e menções)
+- Integração com e-mail e notificações push
+
+### 4. Gerenciamento Avançado de SLA
+- Definição de SLA por tipo de cliente, categoria e prioridade
+- Alertas automáticos de vencimento de SLA
+- Relatórios de SLA cumprido x descumprido
+- Acompanhamento de tempo médio de atendimento e solução
+
+### 5. Base de Conhecimento (FAQ / Central de Ajuda)
+- Artigos internos e públicos
+- Sugestão automática de artigos ao abrir ticket
+- Indexação por categoria
+- Busca inteligente (com palavras-chave e tags)
+
+### 6. Relatórios e Dashboards
+- **Relatórios customizáveis:**
+  - Tempo médio de primeira resposta
+  - Tempo médio de resolução
+  - Tickets por cliente, consultoria, categoria, agente, etc.
+  - Exportação em CSV, Excel e PDF
+  - Dashboards visuais (gráficos, KPIs)
+  - Agendamento de relatórios periódicos
+
+### 7. Gestão de Usuários e Permissões
+- **Perfis com diferentes níveis de acesso:**
+  - Cliente
+  - Consultoria e seus clientes
+  - Agente
+  - Gestor
+  - Administrador
+- Controle de permissões granulares
+- Auditoria de ações (log de atividades)
+
+### 8. Integrações
+- **APIs RESTful para integração com:**
+  - CRMs (ex: Salesforce, HubSpot)
+  - ERPs
+  - Ferramentas de DevOps (ex: Jira, GitHub)
+  - Webhooks para notificações externas
+  - Integração com ferramentas de chat (ex: WhatsApp, MS Teams, Slack)
+
+### 9. Automatizações e Regras de Negócio
+- **Criação de fluxos automatizados:**
+  - Encaminhamento de tickets com base em regras
+  - Escalonamento automático
+  - Respostas automáticas
+  - Horário de atendimento configurável
+
 ## System Architecture
 
 ### Frontend Architecture

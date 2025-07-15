@@ -11,37 +11,68 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  email    String   @unique
-  password String
-  name     String
-  role     String   @default("user") // user, agent, admin
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  username      String   @unique
+  email         String   @unique
+  password      String
+  name          String
+  role          String   @default("user") // user, agent, admin, manager, consultant
+  phone         String?
+  avatar        String?
+  department    String?
+  consultancyId Int?
+  isActive      Boolean  @default(true)
+  lastLogin     DateTime?
+  mfaEnabled    Boolean  @default(false)
+  mfaSecret     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  createdTickets Ticket[] @relation("CustomerTickets")
-  assignedTickets Ticket[] @relation("AssignedTickets")
-  comments Comment[]
+  consultancy     Consultancy?  @relation(fields: [consultancyId], references: [id])
+  createdTickets  Ticket[]      @relation("CustomerTickets")
+  assignedTickets Ticket[]      @relation("AssignedTickets")
+  comments        Comment[]
+  activities      Activity[]
+  templates       Template[]
+  userPermissions UserPermission[]
 
   @@map("users")
 }
 
 model Ticket {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  status      String   @default("open") // open, in_progress, resolved, closed
-  priority    String   @default("medium") // low, medium, high, critical
-  category    String? // bug, feature, support, question
-  customerId  Int
-  assigneeId  Int?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String
+  status          String   @default("open") // open, in_progress, resolved, closed
+  priority        String   @default("medium") // low, medium, high, critical
+  category        String? // bug, feature, support, question
+  subcategory     String?
+  customerId      Int
+  assigneeId      Int?
+  consultancyId   Int?
+  departmentId    Int?
+  slaId           Int?
+  ticketNumber    String   @unique
+  source          String   @default("web") // web, email, api, chat
+  dueDate         DateTime?
+  resolvedAt      DateTime?
+  firstResponseAt DateTime?
+  tags            String[]
+  isReopened      Boolean  @default(false)
+  timeSpent       Int?     @default(0) // in minutes
+  satisfactionRating Int?  // 1-5 scale
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  customer  User @relation("CustomerTickets", fields: [customerId], references: [id])
-  assignee  User? @relation("AssignedTickets", fields: [assigneeId], references: [id])
-  comments  Comment[]
+  customer     User         @relation("CustomerTickets", fields: [customerId], references: [id])
+  assignee     User?        @relation("AssignedTickets", fields: [assigneeId], references: [id])
+  consultancy  Consultancy? @relation(fields: [consultancyId], references: [id])
+  department   Department?  @relation(fields: [departmentId], references: [id])
+  sla          SLA?         @relation(fields: [slaId], references: [id])
+  comments     Comment[]
+  attachments  Attachment[]
+  activities   Activity[]
+  escalations  Escalation[]
 
   @@map("tickets")
 }
@@ -52,10 +83,213 @@ model Comment {
   userId     Int
   content    String
   isInternal Boolean  @default(false)
+  type       String   @default("comment") // comment, note, solution
+  mentions   String[] // user IDs mentioned
   createdAt  DateTime @default(now())
+
+  ticket      Ticket       @relation(fields: [ticketId], references: [id])
+  user        User         @relation(fields: [userId], references: [id])
+  attachments Attachment[]
+
+  @@map("comments")
+}
+
+model Consultancy {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  phone       String?
+  address     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users   User[]
+  tickets Ticket[]
+
+  @@map("consultancies")
+}
+
+model Department {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tickets Ticket[]
+  slas    SLA[]
+
+  @@map("departments")
+}
+
+model SLA {
+  id                    Int      @id @default(autoincrement())
+  name                  String
+  description           String?
+  departmentId          Int?
+  priority              String[] // priorities this SLA applies to
+  customerType          String[] // customer types this SLA applies to
+  firstResponseTime     Int      // in minutes
+  resolutionTime        Int      // in minutes
+  isActive              Boolean  @default(true)
+  businessHoursOnly     Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  department Department? @relation(fields: [departmentId], references: [id])
+  tickets    Ticket[]
+
+  @@map("slas")
+}
+
+model Template {
+  id          Int      @id @default(autoincrement())
+  name        String
+  subject     String?
+  content     String
+  type        String   // quick_reply, auto_response, email_template
+  category    String?
+  isActive    Boolean  @default(true)
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  createdBy User @relation(fields: [createdById], references: [id])
+
+  @@map("templates")
+}
+
+model Attachment {
+  id          Int      @id @default(autoincrement())
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int
+  url         String
+  ticketId    Int?
+  commentId   Int?
+  uploadedById Int?
+  createdAt   DateTime @default(now())
+
+  ticket     Ticket?  @relation(fields: [ticketId], references: [id])
+  comment    Comment? @relation(fields: [commentId], references: [id])
+
+  @@map("attachments")
+}
+
+model Activity {
+  id          Int      @id @default(autoincrement())
+  ticketId    Int
+  userId      Int
+  action      String   // created, updated, assigned, resolved, etc.
+  description String
+  oldValue    String?
+  newValue    String?
+  createdAt   DateTime @default(now())
 
   ticket Ticket @relation(fields: [ticketId], references: [id])
   user   User   @relation(fields: [userId], references: [id])
 
-  @@map("comments")
+  @@map("activities")
+}
+
+model Escalation {
+  id          Int      @id @default(autoincrement())
+  ticketId    Int
+  level       Int      @default(1)
+  reason      String
+  escalatedAt DateTime @default(now())
+  resolvedAt  DateTime?
+  isActive    Boolean  @default(true)
+
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+
+  @@map("escalations")
+}
+
+model KnowledgeBase {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  category    String
+  tags        String[]
+  isPublic    Boolean  @default(true)
+  isActive    Boolean  @default(true)
+  views       Int      @default(0)
+  helpful     Int      @default(0)
+  notHelpful  Int      @default(0)
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("knowledge_base")
+}
+
+model Automation {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  trigger     String   // new_ticket, status_change, time_based, etc.
+  conditions  Json
+  actions     Json
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("automations")
+}
+
+model Permission {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  resource    String   // tickets, users, reports, etc.
+  action      String   // create, read, update, delete, etc.
+  createdAt   DateTime @default(now())
+
+  userPermissions UserPermission[]
+
+  @@map("permissions")
+}
+
+model UserPermission {
+  id           Int     @id @default(autoincrement())
+  userId       Int
+  permissionId Int
+  granted      Boolean @default(true)
+
+  user       User       @relation(fields: [userId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@unique([userId, permissionId])
+  @@map("user_permissions")
+}
+
+model Report {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  type        String   // performance, sla, custom, etc.
+  parameters  Json
+  schedule    String?  // cron expression for scheduled reports
+  isActive    Boolean  @default(true)
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("reports")
+}
+
+model Integration {
+  id          Int      @id @default(autoincrement())
+  name        String
+  type        String   // webhook, api, email, chat, etc.
+  config      Json
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("integrations")
 }

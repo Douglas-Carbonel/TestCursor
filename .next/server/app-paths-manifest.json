@@ -1,7 +1,6 @@
 {
-  "/api/tickets/stats/route": "app/api/tickets/stats/route.js",
-  "/api/tickets/route": "app/api/tickets/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/tickets/page": "app/tickets/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/knowledge-base/page": "app/knowledge-base/page.js",
+  "/page": "app/page.js"
 }
