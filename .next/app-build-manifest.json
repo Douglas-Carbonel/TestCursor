@@ -31,20 +31,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/tickets/route.js"
     ],
-    "/kanban/page": [
+    "/sla/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/kanban/page.js"
+      "static/chunks/app/sla/page.js"
     ],
-    "/knowledge-base/page": [
+    "/api/sla/rules/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/knowledge-base/page.js"
+      "static/chunks/app/api/sla/rules/route.js"
     ],
-    "/_not-found/page": [
+    "/api/departments/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/departments/route.js"
+    ],
+    "/api/sla/status/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/sla/status/route.js"
+    ],
+    "/users/departments/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/users/departments/page.js"
     ]
   }
 }

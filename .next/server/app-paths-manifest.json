@@ -1,6 +1,12 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
+  "/api/tickets/stats/route": "app/api/tickets/stats/route.js",
+  "/api/tickets/sla/route": "app/api/tickets/sla/route.js",
+  "/api/tickets/route": "app/api/tickets/route.js",
+  "/api/sla/rules/route": "app/api/sla/rules/route.js",
+  "/api/departments/route": "app/api/departments/route.js",
+  "/api/sla/status/route": "app/api/sla/status/route.js",
+  "/page": "app/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/kanban/page": "app/kanban/page.js",
-  "/knowledge-base/page": "app/knowledge-base/page.js"
+  "/sla/page": "app/sla/page.js",
+  "/users/departments/page": "app/users/departments/page.js"
 }
