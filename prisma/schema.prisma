@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  email    String   @unique
+  password String
+  name     String
+  role     String   @default("user") // user, agent, admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdTickets Ticket[] @relation("CustomerTickets")
+  assignedTickets Ticket[] @relation("AssignedTickets")
+  comments Comment[]
+
+  @@map("users")
+}
+
+model Ticket {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  status      String   @default("open") // open, in_progress, resolved, closed
+  priority    String   @default("medium") // low, medium, high, critical
+  category    String? // bug, feature, support, question
+  customerId  Int
+  assigneeId  Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  customer  User @relation("CustomerTickets", fields: [customerId], references: [id])
+  assignee  User? @relation("AssignedTickets", fields: [assigneeId], references: [id])
+  comments  Comment[]
+
+  @@map("tickets")
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  ticketId   Int
+  userId     Int
+  content    String
+  isInternal Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("comments")
+}

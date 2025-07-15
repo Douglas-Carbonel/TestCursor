@@ -2,30 +2,30 @@
 
 ## Overview
 
-HelpDesk Pro is a full-stack ticket management system built with React, Express.js, and PostgreSQL. The application provides a comprehensive solution for managing support tickets, with features for creating, tracking, and resolving customer issues. It includes a modern dashboard, user management, and a complete ticket lifecycle management system.
+HelpDesk Pro is a comprehensive ticket management system built with Next.js 15, React 18, and PostgreSQL. The application provides a complete solution for managing support tickets with features for creating, tracking, and resolving customer issues. It includes a modern dashboard, user management, and a complete ticket lifecycle management system.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Technology stack: Next.js with React, PostgreSQL with Prisma ORM.
 
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Routing**: Wouter for client-side routing
-- **State Management**: TanStack Query (React Query) for server state management
-- **UI Components**: Radix UI with shadcn/ui component library
-- **Styling**: Tailwind CSS with CSS variables for theming
-- **Forms**: React Hook Form with Zod validation
-- **Build Tool**: Vite for development and production builds
+- **Framework**: Next.js 15 with React 18 and TypeScript
+- **Routing**: Next.js App Router with dynamic routes
+- **State Management**: React state and Next.js server components
+- **UI Components**: Radix UI with custom shadcn/ui components
+- **Styling**: Tailwind CSS with dark mode support
+- **API Integration**: Next.js API routes with fetch
+- **Build Tool**: Next.js built-in compiler
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
+- **Runtime**: Next.js API routes (serverless functions)
 - **Language**: TypeScript with ES modules
-- **Database**: PostgreSQL with Drizzle ORM
-- **Session Management**: Express sessions with PostgreSQL store
+- **Database**: PostgreSQL with Prisma ORM
 - **API Design**: RESTful API with JSON responses
-- **Error Handling**: Centralized error handling middleware
+- **Error Handling**: Try-catch blocks with proper error responses
 
 ### Project Structure
 The application follows a monorepo structure with clear separation of concerns:
