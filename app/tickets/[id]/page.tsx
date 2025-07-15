@@ -89,10 +89,10 @@ export default function TicketDetailPage() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-6">Tickets</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Tickets</h1>
         
         {/* Ticket Header */}
         <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
@@ -154,7 +154,7 @@ export default function TicketDetailPage() {
                   Request Ticket Type
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none">
                     <option>Deposit Issue</option>
                     <option>Withdraw Issue</option>
                     <option>Account Issue</option>
@@ -169,7 +169,7 @@ export default function TicketDetailPage() {
                   Status
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none">
                     <option value="in_progress">On-Going</option>
                     <option value="open">New</option>
                     <option value="resolved">Resolved</option>
@@ -189,7 +189,7 @@ export default function TicketDetailPage() {
                 onChange={(e) => setReply(e.target.value)}
                 placeholder="Type ticket issue here..."
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
             
@@ -197,7 +197,7 @@ export default function TicketDetailPage() {
               <Button 
                 type="submit" 
                 disabled={submitting || !reply.trim()}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-6"
               >
                 {submitting ? 'Sending...' : 'Submit Reply'}
               </Button>

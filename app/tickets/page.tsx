@@ -104,114 +104,91 @@ export default function TicketsPage() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-6">Tickets</h1>
-        
-        {/* Controls */}
         <div className="flex items-center justify-between mb-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search for tickets"
-              className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-64"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <h1 className="text-2xl font-bold text-gray-900">Requests</h1>
+          <div className="flex items-center space-x-2">
+            <span className="text-sm text-gray-600">Sort by</span>
+            <select className="text-sm text-orange-500 border-none bg-transparent">
+              <option>Date</option>
+              <option>Priority</option>
+              <option>Status</option>
+            </select>
           </div>
-          
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">Select Priority</span>
-              <ChevronDown className="h-4 w-4 text-gray-400" />
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">This Week</span>
-              <ChevronDown className="h-4 w-4 text-gray-400" />
-            </div>
-            
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              New Ticket
-            </Button>
-          </div>
-        </div>
-
-        {/* Filter Tabs */}
-        <div className="flex space-x-8 border-b border-gray-200">
-          {['All Tickets', 'New', 'On-Going', 'Resolved'].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`pb-2 text-sm font-medium border-b-2 ${
-                activeFilter === filter
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              {filter}
-              {filter !== 'All Tickets' && (
-                <div className="inline-flex items-center ml-2">
-                  <div className={`w-2 h-2 rounded-full ${
-                    filter === 'New' ? 'bg-orange-500' :
-                    filter === 'On-Going' ? 'bg-yellow-500' :
-                    'bg-green-500'
-                  }`}></div>
-                </div>
-              )}
-            </button>
-          ))}
         </div>
       </div>
 
-      {/* Tickets List */}
-      <div className="space-y-4">
-        {filteredTickets.map((ticket) => (
-          <div
-            key={ticket.id}
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow"
-          >
-            <div className="flex items-start justify-between">
-              <div className="flex items-start space-x-3">
-                {getPriorityIcon(ticket.priority)}
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium text-gray-900 mb-1">
-                    Ticket# {new Date().getFullYear()}-CS{ticket.id.toString().padStart(3, '0')}
-                  </h3>
-                  <h4 className="text-base font-medium text-gray-900 mb-2">
-                    {ticket.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                    {ticket.description}
-                  </p>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                        <span className="text-xs font-medium text-white">
-                          {ticket.customer?.name?.charAt(0) || 'U'}
+      {/* Latest Tickets Card */}
+      <div className="bg-white rounded-lg border border-gray-200">
+        <div className="p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">Latest Tickets</h2>
+          
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Ticket ID</th>
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Name</th>
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Email</th>
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Subject</th>
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Created</th>
+                  <th className="text-left py-3 text-sm font-medium text-gray-500">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr>
+                    <td colSpan={6} className="text-center py-8 text-gray-500">Loading...</td>
+                  </tr>
+                ) : filteredTickets.length > 0 ? (
+                  filteredTickets.map((ticket) => (
+                    <tr key={ticket.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-4 text-sm text-gray-900">
+                        <Link href={`/tickets/${ticket.id}`} className="hover:text-orange-600">
+                          ABC{ticket.id.toString().padStart(2, '0')}
+                        </Link>
+                      </td>
+                      <td className="py-4 text-sm text-gray-900">Liam Smith</td>
+                      <td className="py-4 text-sm text-gray-500">liam@gmail.com</td>
+                      <td className="py-4 text-sm text-gray-900">{ticket.title}</td>
+                      <td className="py-4 text-sm text-gray-500">
+                        {new Date(ticket.createdAt).toLocaleString('en-US', {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })} ago
+                      </td>
+                      <td className="py-4">
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                          ticket.status === 'open' ? 'bg-blue-100 text-blue-800' :
+                          ticket.status === 'in_progress' ? 'bg-yellow-100 text-yellow-800' :
+                          ticket.status === 'resolved' ? 'bg-green-100 text-green-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          <span className={`w-1.5 h-1.5 mr-1.5 rounded-full ${
+                            ticket.status === 'open' ? 'bg-blue-400' :
+                            ticket.status === 'in_progress' ? 'bg-yellow-400' :
+                            ticket.status === 'resolved' ? 'bg-green-400' :
+                            'bg-gray-400'
+                          }`}></span>
+                          {ticket.status === 'open' ? 'New' :
+                           ticket.status === 'in_progress' ? 'Open' :
+                           ticket.status === 'resolved' ? 'In Progress' : 'Close'}
                         </span>
-                      </div>
-                      <span className="text-sm text-gray-600">{ticket.customer?.name || 'Unknown'}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col items-end space-y-2">
-                <span className="text-xs text-gray-500">
-                  {formatDate(ticket.createdAt)}
-                </span>
-                <Link href={`/tickets/${ticket.id}`}>
-                  <Button variant="outline" size="sm" className="text-blue-600 border-blue-200 hover:bg-blue-50">
-                    Open Ticket
-                  </Button>
-                </Link>
-              </div>
-            </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={6} className="text-center py-8 text-gray-500">No tickets found</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
-        ))}
+        </div>
       </div>
 
       {filteredTickets.length === 0 && (

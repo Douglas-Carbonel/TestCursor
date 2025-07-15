@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-50`}>
         <div className="flex h-screen overflow-hidden">
           <Navigation />
-          <main className="flex-1 overflow-y-auto bg-white">
+          <main className="flex-1 overflow-y-auto bg-gray-50">
             {children}
           </main>
         </div>
