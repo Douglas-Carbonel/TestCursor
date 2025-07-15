@@ -1,1 +1,6 @@
-{}
+{
+  "/api/tickets/route": "app/api/tickets/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/tickets/page": "app/tickets/page.js",
+  "/tickets/new/page": "app/tickets/new/page.js"
+}
