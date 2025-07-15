@@ -102,94 +102,94 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <div className="container mx-auto p-6 space-y-8">
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex flex-col space-y-2">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-gray-900">
             Dashboard
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-600 text-base">
             Bem-vindo ao seu painel de controle
           </p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <CardTitle className="text-sm font-medium text-gray-600">
                 Total de Chamados
               </CardTitle>
-              <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="p-2 bg-primary rounded-lg">
                 <Ticket className="h-4 w-4 text-white" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">
+              <div className="text-2xl font-bold text-gray-900">
                 {stats?.total || 0}
               </div>
-              <div className="flex items-center text-xs text-green-600 dark:text-green-400 mt-1">
+              <div className="flex items-center text-xs text-green-600 mt-1">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +12% este mês
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group">
+          <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <CardTitle className="text-sm font-medium text-gray-600">
                 Chamados Abertos
               </CardTitle>
-              <div className="p-2 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="p-2 bg-orange-500 rounded-lg">
                 <Clock className="h-4 w-4 text-white" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">
+              <div className="text-2xl font-bold text-gray-900">
                 {stats?.open || 0}
               </div>
-              <div className="flex items-center text-xs text-orange-600 dark:text-orange-400 mt-1">
+              <div className="flex items-center text-xs text-orange-600 mt-1">
                 <AlertCircle className="h-3 w-3 mr-1" />
                 Requer atenção
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group">
+          <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <CardTitle className="text-sm font-medium text-gray-600">
                 Em Progresso
               </CardTitle>
-              <div className="p-2 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="p-2 bg-yellow-500 rounded-lg">
                 <Activity className="h-4 w-4 text-white" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">
+              <div className="text-2xl font-bold text-gray-900">
                 {stats?.inProgress || 0}
               </div>
-              <div className="flex items-center text-xs text-blue-600 dark:text-blue-400 mt-1">
+              <div className="flex items-center text-xs text-blue-600 mt-1">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 Em andamento
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 group">
+          <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <CardTitle className="text-sm font-medium text-gray-600">
                 Resolvidos
               </CardTitle>
-              <div className="p-2 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="p-2 bg-green-500 rounded-lg">
                 <CheckCircle className="h-4 w-4 text-white" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">
+              <div className="text-2xl font-bold text-gray-900">
                 {stats?.resolved || 0}
               </div>
-              <div className="flex items-center text-xs text-green-600 dark:text-green-400 mt-1">
+              <div className="flex items-center text-xs text-green-600 mt-1">
                 <CheckCircle className="h-3 w-3 mr-1" />
                 Concluídos
               </div>
@@ -200,7 +200,7 @@ export default function DashboardPage() {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Recent Tickets */}
-          <Card className="lg:col-span-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300">
+          <Card className="lg:col-span-2 bg-white border border-gray-200">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -265,28 +265,28 @@ export default function DashboardPage() {
           </Card>
 
           {/* Quick Actions */}
-          <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300">
+          <Card className="bg-white border border-gray-200">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Ações Rápidas</CardTitle>
+              <CardTitle className="text-lg font-semibold">Ações Rápidas</CardTitle>
               <CardDescription>
                 Acesse rapidamente as funcionalidades principais
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <Button asChild className="w-full justify-start bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                <Button asChild className="w-full justify-start bg-primary hover:bg-primary/90 text-white">
                   <Link href="/tickets">
                     <Ticket className="mr-2 h-4 w-4" />
                     Ver Todos os Chamados
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="w-full justify-start bg-white/50 dark:bg-gray-700/50 hover:bg-white/70 dark:hover:bg-gray-600/50 border-gray-200/50 dark:border-gray-600/50">
+                <Button asChild variant="outline" className="w-full justify-start border-gray-300 hover:bg-gray-50">
                   <Link href="/tickets/new">
                     <PlusCircle className="mr-2 h-4 w-4" />
                     Criar Novo Chamado
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="w-full justify-start bg-white/50 dark:bg-gray-700/50 hover:bg-white/70 dark:hover:bg-gray-600/50 border-gray-200/50 dark:border-gray-600/50">
+                <Button asChild variant="outline" className="w-full justify-start border-gray-300 hover:bg-gray-50">
                   <Link href="/users">
                     <Users className="mr-2 h-4 w-4" />
                     Gerenciar Usuários

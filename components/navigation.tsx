@@ -20,11 +20,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <Ticket className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                HelpDesk Pro
+              <span className="text-xl font-bold text-primary">
+                ServiceDesk
               </span>
             </Link>
 
@@ -41,14 +41,14 @@ export default function Navigation() {
                     className={cn(
                       "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden group",
                       isActive
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
-                        : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100/70 dark:hover:bg-gray-800/70"
+                        ? "bg-primary/10 text-primary border border-primary/20 shadow-lg"
+                        : "text-gray-600 hover:text-primary hover:bg-gray-50"
                     )}
                   >
                     <Icon className="h-4 w-4 relative z-10" />
                     <span className="relative z-10">{item.name}</span>
                     {!isActive && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
                     )}
                   </Link>
                 )
