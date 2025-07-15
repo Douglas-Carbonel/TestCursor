@@ -21,8 +21,8 @@ export default function Tickets() {
     const matchesSearch = !search || 
       ticket.title.toLowerCase().includes(search.toLowerCase()) ||
       ticket.description.toLowerCase().includes(search.toLowerCase());
-    const matchesStatus = !statusFilter || ticket.status === statusFilter;
-    const matchesPriority = !priorityFilter || ticket.priority === priorityFilter;
+    const matchesStatus = !statusFilter || statusFilter === "all" || ticket.status === statusFilter;
+    const matchesPriority = !priorityFilter || priorityFilter === "all" || ticket.priority === priorityFilter;
 
     return matchesSearch && matchesStatus && matchesPriority;
   }) || [];
@@ -49,7 +49,7 @@ export default function Tickets() {
                 <SelectValue placeholder="Filtrar por status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todos os status</SelectItem>
+                <SelectItem value="all">Todos os status</SelectItem>
                 <SelectItem value="open">Aberto</SelectItem>
                 <SelectItem value="in_progress">Em Andamento</SelectItem>
                 <SelectItem value="resolved">Resolvido</SelectItem>
@@ -61,7 +61,7 @@ export default function Tickets() {
                 <SelectValue placeholder="Filtrar por prioridade" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todas as prioridades</SelectItem>
+                <SelectItem value="all">Todas as prioridades</SelectItem>
                 <SelectItem value="low">Baixa</SelectItem>
                 <SelectItem value="medium">Média</SelectItem>
                 <SelectItem value="high">Alta</SelectItem>

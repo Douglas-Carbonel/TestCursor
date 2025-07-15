@@ -70,21 +70,35 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getTicket(id: number): Promise<TicketWithRelations | undefined> {
-    const [ticket] = await db
+    const ticketResult = await db
       .select()
       .from(tickets)
-      .leftJoin(users, eq(tickets.customerId, users.id))
-      .leftJoin(users, eq(tickets.assigneeId, users.id))
       .where(eq(tickets.id, id));
 
-    if (!ticket) return undefined;
+    if (!ticketResult.length) return undefined;
+
+    const ticket = ticketResult[0];
+
+    const [customer] = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, ticket.customerId));
+
+    let assignee = undefined;
+    if (ticket.assigneeId) {
+      const [assigneeResult] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, ticket.assigneeId));
+      assignee = assigneeResult;
+    }
 
     const ticketComments = await this.getTicketComments(id);
 
     return {
-      ...ticket.tickets,
-      customer: ticket.users!,
-      assignee: ticket.users || undefined,
+      ...ticket,
+      customer,
+      assignee,
       comments: ticketComments,
     };
   }
@@ -96,16 +110,6 @@ export class DatabaseStorage implements IStorage {
     customerId?: number;
     search?: string;
   }): Promise<TicketWithRelations[]> {
-    let query = db
-      .select({
-        ticket: tickets,
-        customer: users,
-        assignee: users,
-      })
-      .from(tickets)
-      .leftJoin(users, eq(tickets.customerId, users.id))
-      .leftJoin(users, eq(tickets.assigneeId, users.id));
-
     const conditions = [];
 
     if (filters?.status) {
@@ -129,18 +133,41 @@ export class DatabaseStorage implements IStorage {
       );
     }
 
+    // Get tickets with filters
+    let ticketQuery = db.select().from(tickets);
+
     if (conditions.length > 0) {
-      query = query.where(and(...conditions));
+      ticketQuery = ticketQuery.where(and(...conditions));
     }
 
-    const result = await query.orderBy(desc(tickets.createdAt));
+    const ticketResults = await ticketQuery.orderBy(desc(tickets.createdAt));
 
-    return result.map((row) => ({
-      ...row.ticket,
-      customer: row.customer!,
-      assignee: row.assignee || undefined,
-      comments: [], // Will be loaded separately if needed
-    }));
+    // Get customer and assignee info for each ticket
+    const result = [];
+    for (const ticket of ticketResults) {
+      const [customer] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, ticket.customerId));
+
+      let assignee = undefined;
+      if (ticket.assigneeId) {
+        const [assigneeResult] = await db
+          .select()
+          .from(users)
+          .where(eq(users.id, ticket.assigneeId));
+        assignee = assigneeResult;
+      }
+
+      result.push({
+        ...ticket,
+        customer,
+        assignee,
+        comments: [], // Will be loaded separately if needed
+      });
+    }
+
+    return result;
   }
 
   async createTicket(insertTicket: InsertTicket): Promise<Ticket> {
