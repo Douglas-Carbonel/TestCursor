@@ -1,4 +1,13 @@
 {
+  "/api/tickets/route": "app/api/tickets/route.js",
+  "/api/tickets/stats/route": "app/api/tickets/stats/route.js",
+  "/api/tickets/sla/route": "app/api/tickets/sla/route.js",
+  "/api/users/route": "app/api/users/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/tickets/page": "app/tickets/page.js",
+  "/users/page": "app/users/page.js",
+  "/reports/page": "app/reports/page.js",
+  "/knowledge-base/page": "app/knowledge-base/page.js"
 }
