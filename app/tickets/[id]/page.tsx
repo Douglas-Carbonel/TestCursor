@@ -98,7 +98,7 @@ export default function TicketDetailPage() {
         <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
           <div className="flex items-start justify-between">
             <div className="flex items-start space-x-3">
-              <div className="w-3 h-3 bg-orange-500 rounded-full mt-2"></div>
+              <div className="w-3 h-3 bg-dwu-orange rounded-full mt-2"></div>
               <div className="flex-1">
                 <h3 className="text-sm font-medium text-gray-900 mb-1">
                   Ticket# {new Date().getFullYear()}-CS{ticket.id.toString().padStart(3, '0')}
@@ -154,7 +154,7 @@ export default function TicketDetailPage() {
                   Request Ticket Type
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-dwu-orange focus:border-dwu-orange appearance-none">
                     <option>Deposit Issue</option>
                     <option>Withdraw Issue</option>
                     <option>Account Issue</option>
@@ -169,7 +169,7 @@ export default function TicketDetailPage() {
                   Status
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-dwu-orange focus:border-dwu-orange appearance-none">
                     <option value="in_progress">On-Going</option>
                     <option value="open">New</option>
                     <option value="resolved">Resolved</option>
@@ -189,7 +189,7 @@ export default function TicketDetailPage() {
                 onChange={(e) => setReply(e.target.value)}
                 placeholder="Type ticket issue here..."
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-dwu-orange focus:border-dwu-orange"
               />
             </div>
             
@@ -197,7 +197,7 @@ export default function TicketDetailPage() {
               <Button 
                 type="submit" 
                 disabled={submitting || !reply.trim()}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-6"
+                className="bg-dwu-orange hover:bg-dwu-orange-dark text-white px-6"
               >
                 {submitting ? 'Sending...' : 'Submit Reply'}
               </Button>

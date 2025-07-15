@@ -14,11 +14,59 @@ Design style: Clean modern layout with sidebar navigation and DWU orange color s
 
 - ✅ Successfully migrated from Replit Agent to standard Replit environment
 - ✅ Implemented modern sidebar navigation layout matching user requirements
-- ✅ Applied DWU company branding with orange color scheme throughout interface
+- ✅ Applied DWU company branding with orange color scheme (#f97316) throughout interface
 - ✅ Updated dashboard with Overview layout including stats cards, charts, and team member sections
 - ✅ Redesigned tickets list page (Requests) with clean table layout
 - ✅ Updated ticket detail page with reply form and DWU color scheme
 - ✅ All pages now use consistent gray background and white card layouts
+- ✅ Configured Tailwind CSS with DWU brand colors and primary orange theme
+
+## Planned Features & Requirements
+
+### Portal System
+- Portal exclusivo para cada colaborador da consultoria e seus respectivos clientes
+- Portal para clientes finais na falta de consultoria
+- Sistema de autenticação e autorização baseado em roles
+
+### Ticket Creation Methods
+- Formulário web com campos personalizados conforme cada categoria de chamados
+- E-mail integrado para abertura automática de chamados
+- API para integrações externas
+- Sistema de upload de arquivos e anexos
+
+### Client Management
+- Cadastro de todos os clientes individualmente
+- Opção de atrelar ou não à consultoria
+- Hierarquia de clientes (consultoria -> cliente final)
+- Gestão de permissões por tipo de cliente
+
+### Category System
+- Cadastro das categorias e subcategorias de chamados
+- Segmentação por produtos
+- Categorias por motivo de abertura do chamado
+- Sistema flexível de campos customizados por categoria
+
+### Department Segmentation
+- Cadastro e segmentação dos chamados por setor:
+  - Suporte
+  - Comercial
+  - Desenvolvimento
+  - Outros setores a serem criados
+- Roteamento automático baseado no tipo de chamado
+
+### Priority System
+- Sistema de priorização de chamados:
+  - Baixa
+  - Média
+  - Alta
+  - Crítica
+  - Outros níveis a serem criados
+
+### SLA Management
+- SLA dinâmico com base no tipo de chamado
+- SLA baseado no setor responsável pelo chamado
+- Métricas e alertas de SLA
+- Relatórios de performance por SLA
 
 ## System Architecture
 

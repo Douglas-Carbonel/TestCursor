@@ -11,21 +11,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/tickets/page.js"
     ],
-    "/api/tickets/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/tickets/route.js"
-    ],
-    "/users/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/users/page.js"
-    ],
-    "/api/users/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/users/route.js"
-    ],
     "/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -36,15 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/tickets/stats/route.js"
     ],
-    "/tickets/[id]/page": [
+    "/api/tickets/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/tickets/[id]/page.js"
-    ],
-    "/api/tickets/[id]/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/tickets/[id]/route.js"
+      "static/chunks/app/api/tickets/route.js"
     ]
   }
 }

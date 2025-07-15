@@ -20,7 +20,7 @@ export default function Navigation() {
       {/* Header */}
       <div className="p-4 border-b border-gray-200">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-orange-500">
+          <span className="text-xl font-bold text-dwu-orange">
             HelpDesk
           </span>
         </Link>
@@ -41,7 +41,7 @@ export default function Navigation() {
                   className={cn(
                     "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-orange-50 text-orange-600"
+                      ? "bg-dwu-orange-light text-dwu-orange-dark"
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   )}
                 >

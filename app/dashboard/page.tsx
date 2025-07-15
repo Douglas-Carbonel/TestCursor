@@ -168,7 +168,7 @@ export default function DashboardPage() {
         <Card className="bg-white border border-gray-200">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg font-semibold text-gray-900">Target Stats</CardTitle>
-            <select className="text-sm text-orange-500 border-none bg-transparent">
+            <select className="text-sm text-dwu-orange border-none bg-transparent">
               <option>Weekly</option>
               <option>Monthly</option>
             </select>
@@ -217,13 +217,13 @@ export default function DashboardPage() {
         <Card className="bg-white border border-gray-200">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg font-semibold text-gray-900">Member online</CardTitle>
-            <button className="text-sm text-orange-500">View All</button>
+            <button className="text-sm text-dwu-orange">View All</button>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-dwu-orange rounded-full flex items-center justify-center">
                     <span className="text-xs font-medium text-white">ET</span>
                   </div>
                   <div>

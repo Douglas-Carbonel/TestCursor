@@ -111,7 +111,7 @@ export default function TicketsPage() {
           <h1 className="text-2xl font-bold text-gray-900">Requests</h1>
           <div className="flex items-center space-x-2">
             <span className="text-sm text-gray-600">Sort by</span>
-            <select className="text-sm text-orange-500 border-none bg-transparent">
+            <select className="text-sm text-dwu-orange border-none bg-transparent">
               <option>Date</option>
               <option>Priority</option>
               <option>Status</option>
@@ -147,7 +147,7 @@ export default function TicketsPage() {
                   filteredTickets.map((ticket) => (
                     <tr key={ticket.id} className="border-b border-gray-100 hover:bg-gray-50">
                       <td className="py-4 text-sm text-gray-900">
-                        <Link href={`/tickets/${ticket.id}`} className="hover:text-orange-600">
+                        <Link href={`/tickets/${ticket.id}`} className="hover:text-dwu-orange-dark">
                           ABC{ticket.id.toString().padStart(2, '0')}
                         </Link>
                       </td>
