@@ -1,6 +1,9 @@
 {
+  "/api/tickets/stats/route": "app/api/tickets/stats/route.js",
   "/api/tickets/route": "app/api/tickets/route.js",
+  "/api/users/route": "app/api/users/route.js",
+  "/page": "app/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/tickets/page": "app/tickets/page.js",
-  "/tickets/new/page": "app/tickets/new/page.js"
+  "/users/page": "app/users/page.js",
+  "/tickets/page": "app/tickets/page.js"
 }
