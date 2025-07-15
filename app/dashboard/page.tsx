@@ -142,59 +142,55 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Card className="bg-white border border-gray-200 hover:shadow-sm transition-shadow duration-200">
-          <CardContent className="p-6">
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-600 mb-2">Open tickets</span>
-              <span className="text-3xl font-bold text-gray-900 mb-1">{stats?.open || 52}</span>
-              <div className="flex items-center text-sm text-green-600">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                <span>15% Up from last hour</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Total de Tickets
+              </CardTitle>
+              <Ticket className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats?.total || 0}</div>
+            </CardContent>
+          </Card>
 
-        <Card className="bg-white border border-gray-200 hover:shadow-sm transition-shadow duration-200">
-          <CardContent className="p-6">
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-600 mb-2">New Tickets</span>
-              <span className="text-3xl font-bold text-gray-900 mb-1">{stats?.total || 36}</span>
-              <div className="flex items-center text-sm text-green-600">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                <span>15% Up from last hour</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Tickets Abertos
+              </CardTitle>
+              <AlertCircle className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats?.open || 0}</div>
+            </CardContent>
+          </Card>
 
-        <Card className="bg-white border border-gray-200 hover:shadow-sm transition-shadow duration-200">
-          <CardContent className="p-6">
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-600 mb-2">In Process Tickets</span>
-              <span className="text-3xl font-bold text-gray-900 mb-1">{stats?.inProgress || 41}</span>
-              <div className="flex items-center text-sm text-green-600">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                <span>15% Up from last hour</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Em Progresso
+              </CardTitle>
+              <Activity className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats?.inProgress || 0}</div>
+            </CardContent>
+          </Card>
 
-        <Card className="bg-white border border-gray-200 hover:shadow-sm transition-shadow duration-200">
-          <CardContent className="p-6">
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-600 mb-2">Closed Tickets</span>
-              <span className="text-3xl font-bold text-gray-900 mb-1">{stats?.closed || 45}</span>
-              <div className="flex items-center text-sm text-green-600">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                <span>15% Up from last hour</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Resolvidos
+              </CardTitle>
+              <CheckCircle className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats?.resolved || 0}</div>
+            </CardContent>
+          </Card>
+        </div>
 
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
